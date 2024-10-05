@@ -1,0 +1,236 @@
+.w-layout-blockcontainer {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.w-layout-hflex {
+  flex-direction: row;
+  align-items: flex-start;
+  display: flex;
+}
+
+@media screen and (max-width: 991px) {
+  .w-layout-blockcontainer {
+    max-width: 728px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .w-layout-blockcontainer {
+    max-width: none;
+  }
+}
+
+.header {
+  text-align: center;
+  width: auto;
+  max-width: 500px;
+  margin: auto;
+}
+
+.heading {
+  color: #fef7ee;
+  margin: 0 0 .5rem;
+  font-size: 2rem;
+}
+
+.coffe-listing {
+  background-color: #1b1d1f;
+  background-image: url('../images/vector.svg');
+  background-position: 65% 3%;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  max-width: 1094px;
+  margin-top: 10rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5rem 7.75rem;
+  font-family: DM Sans, sans-serif;
+  position: static;
+}
+
+.subheading {
+  color: #6f757c;
+  white-space: normal;
+  width: auto;
+  margin-bottom: 1.25rem;
+  padding-right: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.body {
+  color: #fef7ee;
+  background-color: #111315;
+  background-image: url('../images/bg-cafe.jpg');
+  background-position: 50% 0;
+  background-repeat: repeat-x;
+  background-size: 100% 300px;
+  background-attachment: fixed;
+  font-family: DM Sans, sans-serif;
+  font-size: 16px;
+}
+
+.link {
+  color: #fef7ee;
+  border-radius: 8px;
+  padding: .5rem .75rem;
+  font-size: .875rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.link.active {
+  background-color: #6f757c;
+  font-size: .875rem;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+.products-navigation {
+  box-sizing: border-box;
+  grid-column-gap: .75rem;
+  grid-row-gap: .75rem;
+  aspect-ratio: auto;
+  text-align: center;
+  object-fit: fill;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.coffee-list {
+  grid-column-gap: 2rem;
+  grid-row-gap: 4rem;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: row;
+  place-content: stretch;
+  place-items: stretch stretch;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+}
+
+.coffee-name {
+  color: #fef7ee;
+  font-weight: 700;
+}
+
+.coffee-item {
+  position: relative;
+}
+
+.image {
+  border-radius: 12px;
+  margin-bottom: .75rem;
+}
+
+.bottom-row {
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: 700;
+  display: flex;
+}
+
+.votes {
+  color: #6f757c;
+  justify-content: center;
+  align-items: center;
+}
+
+.vote-number {
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 2px;
+  line-height: 16px;
+  display: block;
+}
+
+.vote-text {
+  padding-right: 1px;
+  line-height: 16px;
+}
+
+.rating {
+  justify-content: center;
+  align-items: center;
+}
+
+.popular-text {
+  color: #302522;
+  -webkit-text-fill-color: inherit;
+  vertical-align: middle;
+  background-color: #f6c768;
+  background-clip: border-box;
+  border-radius: 12px;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: .25rem .75rem;
+  font-size: .625rem;
+  font-weight: 700;
+  line-height: 13px;
+  display: inline-block;
+  position: absolute;
+  inset: 8px auto auto 8px;
+}
+
+.middle-row {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .5rem;
+}
+
+.text-block-2 {
+  font-size: .75rem;
+}
+
+.coffee-price {
+  color: #1b1d1f;
+  background-color: #bee3cc;
+  border-radius: 4px;
+  padding: .25rem .5rem;
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 991px) {
+  .coffe-listing {
+    background-position: 78% 2%;
+    max-width: 712px;
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  .coffee-list {
+    grid-template-columns: 1fr 1fr;
+    max-width: 712px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .coffe-listing {
+    max-width: 387px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .coffee-list {
+    grid-template-columns: 1fr;
+    max-width: 387px;
+  }
+}
+
+#w-node-_1d376976-4a34-b372-fed1-214ddc268bc6-8a56b701 {
+  grid-area: span 3 / span 3 / span 3 / span 3;
+}
+
+
