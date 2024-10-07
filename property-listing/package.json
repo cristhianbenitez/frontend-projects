@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "deploy": "rm -rf dist && vite build && surge dist property-listing.surge.sh",
     "lint": "eslint .",
     "preview": "vite preview"
   },
