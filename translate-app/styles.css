@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+/* Reset some default styles */
+body,
+h2,
+h3,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Add some styles */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  max-width: 1280px;
+  background-image: url(./assets/hero_img.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  color: #f9fafb;
+  margin: 0 auto;
+}
+
+.container {
+}
+
+/* Header styles */
+.header {
+  text-align: center;
+  margin-top: 5.75rem;
+  margin-bottom: 3.25rem;
+}
+
+.header h1 {
+}
+
+/* Main styles */
+.translate-app {
+}
+
+.translate-form {
+  display: flex;
+  padding-inline: 4.5rem;
+  gap: 1rem;
+}
+
+.translate-form-textarea {
+  background-color: #394150;
+  padding: 1.5rem;
+}
+
+/* Language selection styles */
+.translate-languages-container {
+  width: 100px;
+  border: 1px solid #000;
+  height: 50px;
+  background-color: #394150;
+}
+
+.dropdownList-option {
+  cursor: pointer;
+}
+
+/* Textarea styles */
+.translate-form-textarea {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.translate-form-textarea .top {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+.translate-form-textarea .top span,
+.translate-form-textarea .top > div {
+  height: 100%;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.translate-form-textarea .top span:first-child {
+  background: #4d5562;
+  border-radius: 0.5rem;
+}
+
+.translate-form-textarea .bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.translate-form-textarea .bottom textarea {
+  height: 100px;
+  width: 100%;
+  border: none;
+  background: transparent;
+  position: relative;
+  resize: none;
+  outline: none;
+  color: #f9fafb;
+}
+.translate-form-textarea .bottom button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+/* Button styles */
+.translate-button {
+  /* Add styles for the translate button */
+}
+
+/* Result styles */
+.translate-result {
+  /* Add styles for the translation result container */
+}
+
+.translate-result p {
+  /* Add styles for the translated text */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  /* Add responsive styles for smaller screens */
+}

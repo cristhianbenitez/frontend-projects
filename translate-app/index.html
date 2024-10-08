@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Translate App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Translate App</h1>
+    </header>
+    <main class="translate-app">
+      <form class="translate-form" id="translate-form">
+        <div class="translate-form-textarea" id="translate-form-input">
+          <div class="top">
+            <span role="button" id="input-detect-language-btn">Detect language</span>
+            <span role="button" id="input-selected-language">English</span>
+            <span role="button" id="output-original-language">French</span>
+            <div
+              id="translate-input-languages"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              default-value="es"
+              data-type="dropdown"
+            ></div>
+          </div>
+          <div class="bottom">
+            <textarea
+              name="translate-input"
+              id="translate-input"
+              placeholder="Enter text to translate"
+              aria-label="Input text for translation"
+            ></textarea>
+            <button id="translate-button" type="submit">Translate</button>
+          </div>
+        </div>
+        <div class="translate-form-textarea" id="translate-form-output">
+          <div class="top">
+            <span role="button" id="output-original-language">English</span>
+            <span role="button" id="output-selected-language">French</span>
+            <div
+              id="translate-output-languages"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              default-value="es"
+              data-type="dropdown"
+            ></div>
+          </div>
+          <div class="bottom">
+            <textarea name="translate-output" id="translate-output" disabled aria-label="Translation output"></textarea>
+          </div>
+        </div>
+      </form>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
