@@ -1,0 +1,18 @@
+{
+  "name": "translate-app",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "rm -rf dist && npm run build && surge dist translate-app.surge.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "vite": "^5.4.8"
+  }
+}

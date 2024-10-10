@@ -3,28 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Translate App</title>
+    <title>Translation App</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="header">
-      <h1>Translate App</h1>
+      <h1><img src="./assets/logo.svg" alt="Translate App" /></h1>
     </header>
     <main class="translate-app">
       <form class="translate-form" id="translate-form">
         <div class="translate-form-textarea" id="translate-form-input">
           <div class="top">
             <span role="button" id="input-detect-language-btn">Detect language</span>
-            <span role="button" id="input-selected-language">English</span>
-            <span role="button" id="output-original-language">French</span>
+            <span role="button" id="input-selected-language" class="selected-language" data-value="en">English</span>
+            <span role="button" id="output-original-language" data-value="fr">French</span>
             <div
               id="translate-input-languages"
               aria-haspopup="listbox"
               aria-expanded="false"
               default-value="es"
               data-type="dropdown"
-            ></div>
+            >
+              <img src="./assets/Expand_down.svg" class="dropdown-button-arrow" />
+            </div>
           </div>
+          <hr class="translate-form-textarea-divider" />
           <div class="bottom">
             <textarea
               name="translate-input"
@@ -32,27 +35,53 @@
               placeholder="Enter text to translate"
               aria-label="Input text for translation"
             ></textarea>
-            <button id="translate-button" type="submit">Translate</button>
+            <div class="translate-form-textarea-buttons-container">
+              <div class="translate-form-textarea-buttons">
+                <button class="copytoclipboard-button" id="copy-to-clipboard-input-btn">
+                  <img src="./assets/Copy.svg" alt="Copy" />
+                </button>
+                <button class="listen-button" id="listen-input-btn">
+                  <img src="./assets/sound_max_fill.svg" alt="Listen" />
+                </button>
+              </div>
+              <button id="translate-button" type="submit" class="translate-button">
+                <img src="./assets/Sort_alfa.svg" class="translate-button-icon" />Translate
+              </button>
+            </div>
           </div>
         </div>
         <div class="translate-form-textarea" id="translate-form-output">
           <div class="top">
-            <span role="button" id="output-original-language">English</span>
-            <span role="button" id="output-selected-language">French</span>
+            <span role="button" id="output-original-language" data-value="en">English</span>
+            <span role="button" id="output-selected-language" class="selected-language" data-value="fr">French</span>
             <div
               id="translate-output-languages"
               aria-haspopup="listbox"
               aria-expanded="false"
               default-value="es"
               data-type="dropdown"
-            ></div>
+            >
+              <img src="./assets/Expand_down.svg" class="dropdown-button-arrow" />
+            </div>
+            <span role="button" id="swap-languages-btn">
+              <img src="./assets/Horizontal_top_left_main.svg" alt="Switch languages" />
+            </span>
           </div>
+          <hr class="translate-form-textarea-divider" />
           <div class="bottom">
             <textarea name="translate-output" id="translate-output" disabled aria-label="Translation output"></textarea>
+            <div class="translate-form-textarea-buttons">
+              <button class="copytoclipboard-button" id="copy-to-clipboard-output-btn">
+                <img src="./assets/Copy.svg" alt="Copy" />
+              </button>
+              <button class="listen-button" id="listen-output-btn">
+                <img src="./assets/sound_max_fill.svg" alt="Listen" />
+              </button>
+            </div>
           </div>
         </div>
       </form>
     </main>
-    <script src="script.js"></script>
+    <script type="module" src="/js/main.js"></script>
   </body>
 </html>
