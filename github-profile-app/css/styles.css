@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+@import './reset.css';
+
+:root {
+  --ff-primary: 'Be Vietnam Pro', sans-serif;
+
+  --fs-large: 2rem;
+  --fs-title: 1.25rem;
+  --fs-body: 1rem;
+  --fs-small: 0.75rem;
+
+  --clr-dark-navy: #111729;
+  --clr-navy: #1d1b48;
+  --clr-blue: #3662e3;
+  --clr-dark-gray: #20293a;
+  --clr-gray: #364153;
+  --clr-light-gray: #4a5567;
+  --clr-off-white: #cdd5e0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--ff-primary);
+  background-color: var(--clr-dark-navy);
+  color: var(--clr-off-white);
+}
+
+/* Header */
+
+.header {
+  background: url('/assets/hero-image-github-profile.png') no-repeat top / 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 240px;
+}
+
+.header__search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 484px;
+  background-color: var(--clr-dark-gray);
+  border-radius: 0.85rem;
+}
+
+.header__search-bar-input {
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  padding: 1rem;
+  border-radius: 0.85rem;
+  color: var(--clr-off-white);
+  outline: none;
+}
+
+.header__search-bar-input:focus {
+  outline: 2px solid var(--clr-blue);
+}
+
+/* Main Content */
+.main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 4.5rem;
+}
+@media (min-width: 768px) {
+  .main {
+    padding: 9.5rem;
+  }
+}
+
+/* Profile Details */
+.profile-details {
+}
+
+.profile-details__user-info {
+}
+
+.profile-details__user-info-avatar {
+}
+
+.profile-details__user-info-name {
+}
+
+.profile-details__user-info-bio {
+}
+
+.profile-details__info {
+}
+
+.profile-details__info-item {
+}
+
+.profile-details__info-item-label {
+}
+
+.profile-details__info-item-value {
+}
+
+/* Profile Repositories */
+.profile-repositories {
+}
+
+.profile-repositories__item {
+}
+
+.profile-repositories__item-title {
+}
+
+.profile-repositories__item-description {
+}
+
+.profile-repositories__item-details {
+}
+
+.profile-repositories__item-details-label {
+}
+
+.profile-repositories__item-details-value {
+}
+
+.profile-repositories__view-all {
+}
+
+.profile-repositories__view-all-button {
+}
