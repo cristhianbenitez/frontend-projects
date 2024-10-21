@@ -1,10 +1,11 @@
 export const state = {
-  username: 'octocat',
+  username: 'github',
   userData: null,
   userRepos: null,
   displayedRepos: 4,
   isLoading: true,
-  error: null
+  error: null,
+  suggestions: []
 };
 
 export const setState = (newState) => {

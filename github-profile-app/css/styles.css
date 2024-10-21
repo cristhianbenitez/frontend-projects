@@ -3,8 +3,8 @@
 @import './reset.css';
 
 :root {
-  --ff-primary: 'Be Vietnam Pro', sans-serif;
-  --ff-secondary: 'Outfit', sans-serif;
+  --ff-primary: 'Outfit', sans-serif;
+  --ff-secondary: 'Be Vietnam Pro', sans-serif;
 
   --fs-large: 2rem;
   --fs-title: 1.25rem;
@@ -18,6 +18,7 @@
   --clr-gray: #364153;
   --clr-light-gray: #4a5567;
   --clr-off-white: #cdd5e0;
+  --clr-light-gray-text: #97a3b6;
 }
 
 html,
@@ -31,14 +32,34 @@ body {
   color: var(--clr-off-white);
 }
 
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* Header */
 
 .header {
-  background: url('/assets/hero-image-github-profile.png') no-repeat top / 100%;
+  background-image: url('/assets/hero-desktop.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  height: 240px;
+  min-height: 240px;
+}
+
+.header__search-bar-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .header__search-bar {
@@ -49,30 +70,63 @@ body {
   background-color: var(--clr-dark-gray);
   border-radius: 0.85rem;
   margin-top: 2rem;
+  padding: 1rem;
+  gap: 0.75rem;
 }
 
+.header__search-bar:focus-within {
+  outline: 2px solid var(--clr-blue);
+}
 .header__search-bar-input {
   height: 100%;
   width: 100%;
   background-color: transparent;
   border: none;
-  padding: 1rem;
   border-radius: 0.85rem;
   color: var(--clr-off-white);
   outline: none;
 }
 
-.header__search-bar-input:focus {
-  outline: 2px solid var(--clr-blue);
+.header__search-bar-suggestions {
+  width: 100%;
+  background-color: var(--clr-dark-navy);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  margin-top: 8px;
+  left: 0;
+}
+
+.header__search-bar-suggestion {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+.header__search-bar-suggestion-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+}
+
+.header__search-bar-suggestion-username {
+  margin-left: 12px;
+  font-size: var(--fs-body);
 }
 
 /* Main Content */
 .main {
   max-width: 1280px;
   margin: 0 auto;
-  padding-inline: 4.5rem;
+  padding-inline: 4.625rem;
 }
 @media (min-width: 768px) {
+}
+
+@media (min-width: 1200px) {
   .main {
     padding-inline: 9.5rem;
   }
@@ -99,26 +153,27 @@ body {
   margin-bottom: 1.25rem;
   padding: 8px;
   margin-right: 38px;
-
+  object-fit: cover;
   margin-top: -42px;
 }
 
 .profile-details__user-info-avatar img {
   border-radius: 10px;
+  object-fit: cover;
 }
 
 .profile-details__info {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   padding-top: 12px;
-  gap: 20px;
+  gap: 14px;
 }
 
 .profile-details__info-item {
   background: var(--clr-dark-navy);
   padding: 1rem 1.25rem;
   border-radius: 12px;
-  font-family: var(--ff-secondary);
 }
 
 .profile-details__info-item-label {
@@ -136,11 +191,21 @@ body {
 .profile-details__user-info-name {
   font-size: var(--fs-large);
   font-weight: 500;
+  font-family: var(--ff-secondary);
 }
 
 .profile-details__user-info-bio {
-  color: #97a3b6;
+  font-family: var(--ff-secondary);
+  color: var(--clr-light-gray-text);
   margin-bottom: 2.125rem;
+}
+@media (min-width: 980px) {
+  .profile-details__info {
+    flex-direction: row;
+    gap: 20px;
+  }
+}
+@media (min-width: 1025px) {
 }
 
 /* Profile Repositories */
@@ -150,34 +215,38 @@ body {
 .profile-repositories__list {
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(2, 1fr);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  margin-bottom: 2.875rem;
+  grid-template-columns: 1fr;
+  align-items: flex-start;
 }
 
 .profile-repositories__item {
   background: linear-gradient(95deg, #111729 3%, #1d1b48 99.61%);
   padding: 1.25rem;
   border-radius: 12px;
+  max-width: 100%;
 }
 
 .profile-repositories__item-title {
   margin-bottom: 0.75rem;
+  font-size: var(--fs-title);
+  font-weight: 500;
 }
 
 .profile-repositories__item-description {
   margin-bottom: 1.25rem;
-  color: #97a3b6;
+  color: var(--clr-light-gray-text);
 }
 
 .profile-repositories__item-details {
   display: flex;
   gap: 12px;
+  color: var(--clr-light-gray-text);
 }
 
 .profile-repositories__item-details span {
+  gap: 4px;
+  display: flex;
+  align-items: center;
 }
 
 .profile-repositories__item-details-value {
@@ -195,9 +264,18 @@ body {
   border: none;
   background: none;
   width: 100%;
-  color: #97a3b6;
-  font-family: var(--ff-secondary);
+  color: var(--clr-light-gray-text);
+  margin-top: 2.875rem;
 }
 
 .profile-repositories__view-all-button {
+}
+
+@media (min-width: 900px) {
+  .profile-repositories__list {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 auto;
+  }
+  .profile-repositories__item {
+  }
 }

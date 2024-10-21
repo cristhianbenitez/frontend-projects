@@ -1,4 +1,7 @@
 import { setState, getState } from './state';
+import StarIcon from '../assets/Star.svg';
+import ChieldIcon from '../assets/Chield_alt.svg';
+import NestingIcon from '../assets/Nesting.svg';
 
 export const UserRepositories = {
   fetchRepos: async (username) => {
@@ -44,33 +47,35 @@ export const UserRepositories = {
           ${visibleRepos
             .map(
               (repo) => `
-         <li class="profile-repositories__item" aria-label="Repository">
-            <h3 class="profile-repositories__item-title">${repo.name}</h3>
-            <p class="profile-repositories__item-description">
-              ${repo.description || ''}
-            </p>
-            <div class="profile-repositories__item-details">
-              ${
-                repo.license
-                  ? `<span class="profile-repositories__item-details-value">
-                <img src="./assets/Chield_alt.svg" alt="Chield" />
-                ${repo.license.name.slice(0, 3)}
-              </span>`
-                  : ''
-              }
-              <span class="profile-repositories__item-details-value">
-                <img src="./assets/Star.svg" alt="Star" />
-                ${repo.stargazers_count}
-              </span>
-              <span class="profile-repositories__item-details-value">
-                <img src="./assets/Nesting.svg" alt="Nesting" />
-                ${repo.forks_count}
-              </span>
-              <span class="profile-repositories__item-details-value">
-                updated ${calculateDaysAgo(repo.updated_at)} days ago
-              </span>
-            </div>
-          </li>
+              <li class="profile-repositories__item" aria-label="Repository">
+                <a href="${repo.html_url}" target="_blank" class="profile-repositories__item-link">
+                <h3 class="profile-repositories__item-title">${repo.name}</h3>
+                <p class="profile-repositories__item-description">
+                  ${repo.description || ''}
+                </p>
+                <div class="profile-repositories__item-details">
+                  ${
+                    repo.license
+                      ? `<span class="profile-repositories__item-details-value">
+                    <img src="${ChieldIcon}" alt="Chield" />
+                    ${repo.license.name.slice(0, 3)}
+                  </span>`
+                      : ''
+                  }
+                  <span class="profile-repositories__item-details-value">
+                    <img src="${NestingIcon}" alt="Nesting" />
+                    ${repo.forks_count}
+                  </span>
+                  <span class="profile-repositories__item-details-value">
+                    <img src="${StarIcon}" alt="Star" />
+                    ${repo.stargazers_count}
+                  </span>
+                  <span class="profile-repositories__item-details-value">
+                    updated ${calculateDaysAgo(repo.updated_at)} days ago
+                  </span>
+                </div>
+                </a>
+              </li>
           `
             )
             .join('')}
