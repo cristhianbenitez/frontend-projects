@@ -34,9 +34,16 @@ const render = async () => {
   await fetchData(state.username);
   // Render based on the final state
   elements.main.innerHTML = `
-      ${UserInfo.render(state.userData)}
-      ${UserRepositories.render(state.userRepos)}
+      ${UserInfo.render()}
+      <h2 class="profile-details__user-info-name" aria-label="Profile name">${state.userData.name}</h2>
+      ${
+        state.userData.bio
+          ? `<p class="profile-details__user-info-bio" aria-label="Profile bio">${state.userData.bio}</p>`
+          : `<p class="profile-details__user-info-bio" aria-label="Profile bio">How people build software</p>`
+      }
+      ${UserRepositories.render()}
     `;
+  UserRepositories.attachEventListeners();
 };
 
 // Initialize the app

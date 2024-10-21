@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
 @import './reset.css';
 
 :root {
   --ff-primary: 'Be Vietnam Pro', sans-serif;
+  --ff-secondary: 'Outfit', sans-serif;
 
   --fs-large: 2rem;
   --fs-title: 1.25rem;
@@ -25,7 +27,7 @@ body {
 
 body {
   font-family: var(--ff-primary);
-  background-color: var(--clr-dark-navy);
+  background-color: var(--clr-dark-gray);
   color: var(--clr-off-white);
 }
 
@@ -35,7 +37,7 @@ body {
   background: url('/assets/hero-image-github-profile.png') no-repeat top / 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   height: 240px;
 }
 
@@ -46,6 +48,7 @@ body {
   width: 484px;
   background-color: var(--clr-dark-gray);
   border-radius: 0.85rem;
+  margin-top: 2rem;
 }
 
 .header__search-bar-input {
@@ -67,65 +70,133 @@ body {
 .main {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 4.5rem;
+  padding-inline: 4.5rem;
 }
 @media (min-width: 768px) {
   .main {
-    padding: 9.5rem;
+    padding-inline: 9.5rem;
   }
 }
 
 /* Profile Details */
 .profile-details {
+  display: flex;
 }
 
 .profile-details__user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-details__user-info-avatar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #20293a;
+  max-width: 120px;
+  border-radius: 16px;
+  margin-bottom: 1.25rem;
+  padding: 8px;
+  margin-right: 38px;
+
+  margin-top: -42px;
 }
 
-.profile-details__user-info-name {
-}
-
-.profile-details__user-info-bio {
+.profile-details__user-info-avatar img {
+  border-radius: 10px;
 }
 
 .profile-details__info {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 12px;
+  gap: 20px;
 }
 
 .profile-details__info-item {
+  background: var(--clr-dark-navy);
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  font-family: var(--ff-secondary);
 }
 
 .profile-details__info-item-label {
+  border-right: 1px solid var(--clr-light-gray);
+  padding-block: 0.5rem;
+  padding-right: 20px;
+  color: var(--clr-light-gray);
 }
 
 .profile-details__info-item-value {
+  padding-block: 0.5rem;
+  padding-left: 20px;
+}
+
+.profile-details__user-info-name {
+  font-size: var(--fs-large);
+  font-weight: 500;
+}
+
+.profile-details__user-info-bio {
+  color: #97a3b6;
+  margin-bottom: 2.125rem;
 }
 
 /* Profile Repositories */
 .profile-repositories {
 }
 
+.profile-repositories__list {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 2.875rem;
+}
+
 .profile-repositories__item {
+  background: linear-gradient(95deg, #111729 3%, #1d1b48 99.61%);
+  padding: 1.25rem;
+  border-radius: 12px;
 }
 
 .profile-repositories__item-title {
+  margin-bottom: 0.75rem;
 }
 
 .profile-repositories__item-description {
+  margin-bottom: 1.25rem;
+  color: #97a3b6;
 }
 
 .profile-repositories__item-details {
+  display: flex;
+  gap: 12px;
 }
 
-.profile-repositories__item-details-label {
+.profile-repositories__item-details span {
 }
 
 .profile-repositories__item-details-value {
+  display: flex;
+  align-items: center;
+}
+
+.profile-repositories__item-details-value:last-child {
+  margin-left: 12px;
+  font-size: var(--fs-small);
 }
 
 .profile-repositories__view-all {
+  margin: 0 auto;
+  border: none;
+  background: none;
+  width: 100%;
+  color: #97a3b6;
+  font-family: var(--ff-secondary);
 }
 
 .profile-repositories__view-all-button {

@@ -1,4 +1,4 @@
-import { setState } from './state';
+import { setState, getState } from './state';
 
 export const UserRepositories = {
   fetchRepos: async (username) => {
@@ -7,17 +7,41 @@ export const UserRepositories = {
       const response = await fetch(`https://api.github.com/users/${username}/repos`);
       if (!response.ok) throw new Error('Failed to fetch repositories');
       const data = await response.json();
-      setState({ userRepos: data, isLoading: false });
+      setState({ userRepos: data, displayedRepos: 4, isLoading: false });
     } catch (error) {
       setState({ error: error.message, isLoading: false });
     }
   },
-  render: (repos) => {
+
+  loadMoreRepos: () => {
+    const { userRepos, displayedRepos } = getState();
+    const newDisplayedRepos = Math.min(displayedRepos + 4, userRepos.length);
+    setState({ displayedRepos: newDisplayedRepos });
+  },
+
+  attachEventListeners: () => {
+    const loadMoreButton = document.querySelector('.profile-repositories__view-all');
+    if (loadMoreButton) {
+      loadMoreButton.addEventListener('click', () => {
+        UserRepositories.loadMoreRepos();
+        const reposSection = document.querySelector('.profile-repositories');
+        if (reposSection) {
+          reposSection.innerHTML = UserRepositories.render();
+          UserRepositories.attachEventListeners();
+        }
+      });
+    }
+  },
+
+  render: () => {
+    const { userRepos, displayedRepos } = getState();
+    const visibleRepos = userRepos.slice(0, displayedRepos);
+    const hasMoreRepos = userRepos.length > displayedRepos;
+
     return `
       <section class="profile-repositories" aria-label="User repositories">
-        <h2>Repositories</h2>
         <ul class="profile-repositories__list">
-          ${repos
+          ${visibleRepos
             .map(
               (repo) => `
          <li class="profile-repositories__item" aria-label="Repository">
@@ -30,7 +54,7 @@ export const UserRepositories = {
                 repo.license
                   ? `<span class="profile-repositories__item-details-value">
                 <img src="./assets/Chield_alt.svg" alt="Chield" />
-                ${repo.license.name}
+                ${repo.license.name.slice(0, 3)}
               </span>`
                   : ''
               }
@@ -51,7 +75,7 @@ export const UserRepositories = {
             )
             .join('')}
         </ul>
-        <button class="profile-repositories__view-all">View All Repositories</button>
+        ${hasMoreRepos ? `<button class="profile-repositories__view-all">View all repositories</button>` : ''}
       </section>
     `;
   }

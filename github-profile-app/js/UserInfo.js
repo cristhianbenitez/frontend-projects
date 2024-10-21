@@ -1,4 +1,4 @@
-import { setState } from './state';
+import { setState, getState } from './state';
 
 export const UserInfo = {
   fetchUser: async (username) => {
@@ -12,17 +12,14 @@ export const UserInfo = {
       setState({ error: error.message, isLoading: false });
     }
   },
-  render: (userData) => {
+  render: () => {
+    const { userData } = getState();
     return `
       <section class="profile-details" aria-label="Profile information">
         <div class="profile-details__user-info">
           <div class="profile-details__user-info-avatar" role="img" aria-label="Profile avatar">
             <img src="${userData.avatar_url}" alt="Profile avatar" />
           </div>
-          <h2 class="profile-details__user-info-name" aria-label="Profile name">${userData.name}</h2>
-          ${
-            userData.bio ? `<p class="profile-details__user-info-bio" aria-label="Profile bio">${userData.bio}</p>` : ''
-          }
         </div>
 
         <div class="profile-details__info">
