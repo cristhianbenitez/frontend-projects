@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-primary-black h-full overflow-auto overscroll-none touch-pan-y;
+}
+
+td {
+  @apply p-0;
+}
+
+.custom-checkbox {
+  @apply flex items-center bg-secondary-black rounded-xl px-3 py-2 text-sm text-primary-white transition-all cursor-pointer
+    hover:bg-primary-black
+    focus:bg-primary-black focus:text-primary-gray
+    has-[:checked]:bg-primary-black has-[:checked]:text-primary-gray
+    active:bg-primary-black active:text-primary-gray;
+}
+
+.status-checkbox {
+  @apply w-6 h-6 border-2 border-primary-white rounded
+    checked:bg-primary-blue checked:border-primary-blue
+    hover:border-primary-blue transition-all cursor-pointer
+    appearance-none relative;
+
+  &:checked::after {
+    content: '';
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+      w-4 h-4 bg-[url('@assets/done_round.svg')] bg-no-repeat bg-center;
+  }
+}
