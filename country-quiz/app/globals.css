@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Main colors */
+  --primary-gradient-start: #e65895;
+  --primary-gradient-end: #bc6be8;
+  --background: #393f6e;
+  --foreground: #e2e4f3;
+  --dark: #343964;
+
+  /* Additional colors */
+  --blue: #3e9fff;
+  --red: #dd524c;
+  --gray: #8b8eab;
+  --cream: #ffecc8;
+}
+
+body {
+  color: var(--foreground);
+  @apply bg-backgroundPattern bg-cover bg-center;
+  font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+}
+
+.question-number {
+  @apply w-10 h-10 rounded-full text-foreground relative inline-flex items-center justify-center text-base font-medium select-none;
+}
+
+.question-number.active {
+  background: linear-gradient(to right, var(--primary-gradient-start), var(--primary-gradient-end));
+}
+
+.question-number.inactive {
+  @apply bg-secondary;
+}
+
+@layer components {
+  .gradient-button {
+    @apply w-full py-4 px-8 rounded-xl text-white text-lg font-medium transition-all duration-300;
+    background: linear-gradient(to right, var(--primary-gradient-start), var(--primary-gradient-end));
+  }
+
+  .option-button {
+    @apply w-full p-4 flex justify-center items-center rounded-xl transition-all duration-300 text-white mb-3 relative overflow-hidden bg-background;
+  }
+
+  .option-button:not(.incorrect):hover,
+  .option-button:not(.correct):hover {
+    background: linear-gradient(to right, var(--primary-gradient-start), var(--primary-gradient-end));
+  }
+
+  .option-button.correct,
+  .option-button.correct:hover {
+    background: green;
+  }
+
+  .option-button.incorrect,
+  .option-button.incorrect:hover {
+    background: var(--red);
+  }
+
+  .answer-icon {
+    @apply text-xl font-bold;
+  }
+
+  .answer-icon.correct {
+    content: '✓';
+    @apply text-white;
+  }
+
+  .answer-icon.incorrect {
+    content: '✗';
+    @apply text-white;
+  }
+
+  .celebration-icon {
+    @apply w-24 h-24 bg-white rounded-full flex items-center justify-center mb-8;
+  }
+}
+
+.option-button.disabled {
+  @apply opacity-75 cursor-not-allowed;
+}

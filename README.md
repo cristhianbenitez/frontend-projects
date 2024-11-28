@@ -38,4 +38,10 @@ A collection of modern frontend development projects completed as part of the De
    - Technologies: React, REST Countries API, Tailwind CSS, React Router
    - [View Demo](https://country-page.surge.sh)
 
+7. **Country Quiz**
+   - Interactive quiz application (AI-reliant development)
+   - Technologies: Next.js 15, TypeScript, Tailwind CSS, Redux Toolkit, React Query
+   - [View Demo](https://country-quiz-kappa.vercel.app/)
+   - *Note: This project was developed using AI-assisted prompts to Claude 3.5 Sonnet. My contributions focused mainly on styling and UI refinements.*
+
 Each project demonstrates different aspects of frontend development, from basic HTML/CSS implementations to complex React applications with state management and API integrations.
