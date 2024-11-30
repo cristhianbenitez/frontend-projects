@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo-small.svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Chat</title>
+    <meta name="pinterest" content="nopin" />
+  </head>
+  <body>
+    <main
+      class="w-full h-full flex justify-center bg-dark-alt bg-hero-image-sc bg-no-repeat bg-top bg-[length:100%_200px] max-md:px-4"
+    >
+      <!-- Toggleable Sidebar  -->
+      <aside id="sidebar" class="w-full max-w-[296px] h-full flex flex-col p-5 bg-dark">
+        <div class="flex justify-between items-center w-full mb-6">
+          <img src="/logo-full.svg" alt="logo" />
+          <img src="/off.svg" alt="close" class="cursor-pointer" id="closeSidebar" class="transition-opacity" />
+        </div>
+        <div
+          class="flex items-center gap-2 cursor-pointer px-3 py-1 rounded-md hover:bg-gray-600 border-2 border-gray-600 border-opacity-20 mb-4"
+          id="new-conversation"
+        >
+          <img src="/add_round_fill.svg" alt="new chat" />
+          <span class="text-white text-sm font-medium">New Chat</span>
+        </div>
+
+        <div class="flex flex-col gap-2 mb-3">
+          <span class="text-white text-sm font-medium">Conversations</span>
+          <ul id="conversations-list" class="flex flex-col gap-2 text-sm text-gray-400"></ul>
+        </div>
+      </aside>
+
+      <!-- Chatbot -->
+      <section class="w-full h-[616px] flex flex-col mt-[4.5rem] max-w-[718px] 2xl:max-w-[1000px] mx-auto text-sm">
+        <img
+          src="/off.svg"
+          alt="menu"
+          class="absolute top-3 left-3 cursor-pointer bg-dark-alt p-2 rounded-md"
+          id="openSidebar-mobile"
+        />
+        <img src="/off.svg" alt="menu" class="hidden absolute top-5 left-5 cursor-pointer" id="openSidebar" />
+        <div
+          id="chatbot"
+          class="w-full h-full max-w-4xl flex flex-col items-center rounded-md bg-gray-900 relative pb-10"
+        >
+          <!-- Chat messages  -->
+          <div
+            id="chat-messages"
+            class="w-full h-full p-4 border-2 rounded-md bg-dark-alt border-opacity-20 border-b-0 border-gray-600"
+          ></div>
+          <!-- Chat input  -->
+          <div
+            id="chat-input"
+            class="w-full flex items-center gap-2 py-3 px-4 rounded-md bg-gray-900 focus-within:border-primary border-2 border-gray-600 absolute bottom-0"
+          >
+            <input
+              type="text"
+              class="w-full text-white bg-transparent outline-none"
+              placeholder="Ask simplechat.ai anything"
+            />
+            <img src="/send.svg" alt="send" class="w-6 h-6 cursor-pointer" />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

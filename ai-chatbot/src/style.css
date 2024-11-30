@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles can still go here if needed */
+
+html,
+body {
+  height: 100%;
+}
+
+#chat-messages {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.message {
+  @apply break-words mb-4 p-3 rounded-lg text-white;
+}
+
+/* Sidebar */
+#sidebar {
+  --transition-duration: 0s;
+  opacity: 1;
+  visibility: visible;
+  display: block;
+  transition: opacity var(--transition-duration) ease-in-out, visibility var(--transition-duration) ease-in-out,
+    transform var(--transition-duration) ease-in-out;
+  position: fixed;
+  left: 0;
+  z-index: 100;
+}
+
+/* Sidebar on desktop */
+@media (min-width: 1025px) {
+  #sidebar {
+    position: unset;
+  }
+}
+
+#sidebar.closed {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-100%);
+}
+
+#closeSidebar {
+  transition: opacity 1s ease-in-out;
+}
+
+#sidebar.closed #closeSidebar {
+  opacity: 0;
+}
+
+@media (min-width: 1025px) {
+  #openSidebar-mobile {
+    display: none;
+  }
+}
