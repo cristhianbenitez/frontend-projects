@@ -1,69 +1,94 @@
 <script setup>
-import WeatherCard from './components/WeatherCard.vue';
-import { ref } from 'vue';
+import { WeatherCard, Header, OtherCities, HourlyForecast, FiveDaysForecast } from '@components';
 
-const search = ref('');
-const metricSystem = ref('metric');
+import { ref, onMounted } from 'vue';
 
-const handleSubmit = () => {
-  console.log(search.value);
+const currentPosition = ref({
+  lat: null,
+  lon: null
+});
+const measurementSystem = ref('metric');
+const isLoading = ref(true);
+
+const handleSubmit = (newPosition) => {
+  isLoading.value = true;
+  fetchPosition({
+    lat: newPosition.lat,
+    lon: newPosition.lon
+  });
 };
 
-const toggleMetricSystem = () => {
-  metricSystem.value = metricSystem.value === 'imperial' ? 'metric' : 'imperial';
+const toggleMeasurementSystem = () => {
+  measurementSystem.value = measurementSystem.value === 'imperial' ? 'metric' : 'imperial';
 };
+
+const fetchPosition = async (coordinates = null) => {
+  try {
+    if (coordinates) {
+      currentPosition.value = coordinates;
+    } else {
+      const { coords } = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+      });
+
+      currentPosition.value = {
+        lat: coords.latitude,
+        lon: coords.longitude
+      };
+    }
+  } catch (error) {
+    currentPosition.value = {
+      lat: 60.192059,
+      lon: 24.945831
+    };
+  } finally {
+    isLoading.value = false;
+  }
+};
+
+onMounted(() => {
+  fetchPosition();
+});
 </script>
 
 <template>
-  <header class="header container">
-    <form @submit.prevent="handleSubmit">
-      <input type="search" placeholder="Search for a city" v-model="search" />
-    </form>
-
-    <div class="metric-system">
-      <button @click="toggleMetricSystem">Imperial/Metric</button>
-    </div>
-  </header>
-  <main class="main container">
-    <div class="col">
-      <div class="weather-card-wrapper">
-        <WeatherCard :metricSystem="metricSystem" />
-      </div>
-      <div class="other-cities-wrapper">
-        <h3>Other Large Cities</h3>
-        <div class="other-cities__list"></div>
-      </div>
-    </div>
-    <div class="col"></div>
+  <Header
+    :handleSubmit="handleSubmit"
+    :toggleMeasurementSystem="toggleMeasurementSystem"
+    :measurementSystem="measurementSystem"
+  />
+  <main v-if="!isLoading" class="main container">
+    <WeatherCard :measurementSystem="measurementSystem" :currentPosition="currentPosition" />
+    <OtherCities :measurementSystem="measurementSystem" :currentPosition="currentPosition" />
+    <HourlyForecast :measurementSystem="measurementSystem" :currentPosition="currentPosition" />
+    <FiveDaysForecast :measurementSystem="measurementSystem" :currentPosition="currentPosition" />
   </main>
+  <div v-else class="loading">Loading weather data...</div>
 </template>
 
 <style scoped>
 .main {
-  display: flex;
-}
-
-.container {
-  max-width: 1280px;
-  padding-inline: 1.5rem;
-  margin-top: 1.75rem;
-  margin-inline: auto;
-}
-
-.col {
-  display: flex;
-  flex-direction: column;
-}
-
-@media (min-width: 480px) {
-  .container {
-    padding-inline: 2rem;
-  }
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-areas:
+    'weather hourly'
+    'other-cities five-day';
+  column-gap: 1.75rem;
+  row-gap: 3rem;
 }
 
 @media (min-width: 768px) {
-  .container {
-    padding-inline: 4.5rem;
+  .main {
+    column-gap: 2.75rem;
   }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: var(--fs-subtitle);
+  color: var(--clr-gray);
 }
 </style>
