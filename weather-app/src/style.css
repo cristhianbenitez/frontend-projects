@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/specimen/Outfit');
+
+:root {
+  /* Colors */
+  --dark-blue: #030616;
+  --blue: #4e80ee;
+  --navy: #20293a;
+  --white: #f2f5f9;
+  --gray: #97a3b6;
+
+  /* Font Family */
+  --ff-Outfit: 'Outfit', sans-serif;
+
+  /* Font sizes */
+  --fs-heading: 1.5rem; /* 24px */
+  --fs-subtitle: 1.25rem; /* 20px */
+  --fs-title: 1rem; /* 16px */
+  --fs-body: 0.875rem; /* 14px */
+  --fs-small: 0.75rem; /* 12px */
+  --fs-caption: 0.625rem; /* 10px */
+
+  /* Font weights */
+  --fw-medium: 500;
+  --fw-regular: 400;
+  --fw-bold: 700;
+}
+
+body {
+  background-color: var(--dark-blue);
+  background-image: url('@assets/earth.png');
+  font-family: var(--ff-Outfit);
+  color: var(--white);
+}
