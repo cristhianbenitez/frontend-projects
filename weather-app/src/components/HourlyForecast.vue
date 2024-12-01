@@ -39,7 +39,7 @@ watch(
         <div class="hourly-forecast__icon">
           <img :src="`https://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`" alt="weather icon" />
         </div>
-        <p class="hourly-forecast__description">{{ hour.weather[0].description }}</p>
+        <p class="hourly-forecast__description">{{ hour.weather[0].main }}</p>
       </div>
       <div class="hourly-forecast__bottom">
         <p class="hourly-forecast__temp">{{ Math.round(hour.main.temp) }}°</p>
@@ -52,8 +52,15 @@ watch(
 .hourly-forecast {
   grid-area: hourly;
   display: flex;
-  justify-content: space-between;
   text-align: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .hourly-forecast {
+    flex-wrap: nowrap;
+  }
 }
 
 .hourly-forecast__item {
@@ -62,11 +69,9 @@ watch(
   background: var(--clr-navy);
   border-radius: 1rem;
   padding: 1rem 0.5rem;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* gap: 1.25rem; */
 }
 
 .hourly-forecast__time {
@@ -79,11 +84,24 @@ watch(
   width: 100%;
   background-color: var(--clr-dark-blue);
   border: none;
+  margin-bottom: 1rem;
 }
 
 .hourly-forecast__icon {
-  /* margin-top: 1rem; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 36px;
+  overflow: hidden;
   margin-bottom: 0.25rem;
+  margin-inline: auto;
+}
+
+.hourly-forecast__icon img {
+  width: 62px;
+  height: 62px;
+  object-fit: cover;
 }
 
 .hourly-forecast__description {
@@ -91,10 +109,12 @@ watch(
   font-weight: var(--fw-medium);
   color: var(--clr-gray);
   text-transform: capitalize;
+  text-align: center;
 }
 
 .hourly-forecast__temp {
   font-size: calc(var(--fs-heading) * 1.25);
   font-weight: var(--fw-bold);
+  text-align: center;
 }
 </style>

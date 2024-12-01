@@ -50,7 +50,7 @@ const getThermometerStyles = (minTemp, maxTemp, scaleMin, scaleMax) => {
 
 <template>
   <div class="fiveDay-forecast" v-if="fiveDayForecast.length > 0">
-    <h3 class="fiveDay-forecast__title">Five Day Forecast</h3>
+    <h3 class="fiveDay-forecast__title">5-day Forecast</h3>
     <ul class="fiveDay-forecast__list">
       <li v-for="day in fiveDayForecast" :key="day.dt" class="fiveDay-forecast__list__item">
         <h3 class="fiveDay-forecast__list__item__date">{{ formattedDate(day.dt_txt) }}</h3>
@@ -59,10 +59,10 @@ const getThermometerStyles = (minTemp, maxTemp, scaleMin, scaleMax) => {
             <div class="fiveDay-forecast__list__item__icon">
               <img
                 :src="`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`"
-                :alt="day.weather[0].description"
+                :alt="day.weather[0].main"
               />
             </div>
-            <p>{{ day.weather[0].description }}</p>
+            <p class="fiveDay-forecast__list__item__description__text">{{ day.weather[0].main }}</p>
           </div>
           <div class="fiveDay-forecast__list__item__temp">
             <span>{{ Math.floor(day.temp_min) }}°</span>
@@ -108,7 +108,7 @@ const getThermometerStyles = (minTemp, maxTemp, scaleMin, scaleMax) => {
 .fiveDay-forecast__list__item__date {
   font-size: var(--fs-subtitle);
   font-weight: var(--fw-medium);
-  width: 140px;
+  width: 180px;
 }
 
 .fiveDay-forecast__list__item__content {
@@ -121,11 +121,15 @@ const getThermometerStyles = (minTemp, maxTemp, scaleMin, scaleMax) => {
 .fiveDay-forecast__list__item__description {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  font-size: var(--fs-small);
+  gap: 0.75rem;
+}
+
+.fiveDay-forecast__list__item__description__text {
+  margin: 0;
+  font-size: var(--fs-caption);
   color: var(--clr-gray);
   text-transform: capitalize;
-  gap: 0.75rem;
+  width: 100px;
 }
 
 .fiveDay-forecast__list__item__icon {
@@ -146,12 +150,17 @@ const getThermometerStyles = (minTemp, maxTemp, scaleMin, scaleMax) => {
 .fiveDay-forecast__list__item__temp {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 0.5rem;
+  width: 100%;
 }
 
 .fiveDay-forecast__list__item__temp__thermometer {
+  display: flex;
+  align-items: center;
   position: relative;
-  width: 360px;
+  width: 100%;
+  max-width: 360px;
   height: 6px;
   background: var(--clr-dark-blue);
   border-radius: 1rem;

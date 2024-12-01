@@ -37,7 +37,7 @@ watch(
         <div class="other-cities__list__item--left">
           <p class="other-cities__list__item__country">{{ city.sys.country }}</p>
           <p class="other-cities__list__item__name">{{ city.name }}</p>
-          <p class="other-cities__list__item__description">{{ city.weather[0].description }}</p>
+          <p class="other-cities__list__item__description">{{ city.weather[0].main }}</p>
         </div>
         <div class="other-cities__list__item--right">
           <div class="other-cities__list__item__icon">

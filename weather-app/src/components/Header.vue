@@ -2,7 +2,7 @@
 const props = defineProps({
   handleSubmit: Function,
   toggleMeasurementSystem: Function,
-  measurementSystem:String,
+  measurementSystem: String
 });
 
 import CitySearch from '@components/CitySearch.vue';
@@ -20,5 +20,6 @@ import UnitToggle from '@components/UnitToggle.vue';
 .header {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 2.25rem;
 }
 </style>

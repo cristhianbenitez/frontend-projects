@@ -80,7 +80,7 @@ onUnmounted(() => {
 <style scoped>
 .header__search {
   background: var(--clr-navy);
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   padding: 0.5rem;
   display: flex;
   align-items: center;

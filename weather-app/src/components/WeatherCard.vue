@@ -32,7 +32,7 @@ const fetchCurrentLocationWeather = async () => {
     const data = await getWeatherByCoords(props.currentPosition, props.measurementSystem);
     weather.value = data;
     weather.value.icon = data.weather[0].icon;
-    weather.value.description = data.weather[0].description;
+    weather.value.description = data.weather[0].main;
   } catch (error) {
     weather.value = null;
   }
@@ -89,8 +89,8 @@ const windSpeedUnit = computed(() => (props.measurementSystem === 'imperial' ? '
   padding: 1.5rem 1.25rem;
   display: flex;
   flex-direction: column;
-  max-width: 340px;
-  width: 340px;
+  /* max-width: 340px; */
+  width: 100%;
   border-radius: 1rem;
   gap: 0.75rem;
 }
@@ -103,8 +103,9 @@ const windSpeedUnit = computed(() => (props.measurementSystem === 'imperial' ? '
 }
 
 .current-weather__temp {
-  font-size: calc(var(--fs-heading) * 2);
+  font-size: 4rem;
   font-weight: var(--fw-bold);
+  line-height: 1;
   margin: 0;
 }
 

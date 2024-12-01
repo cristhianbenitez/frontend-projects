@@ -69,16 +69,26 @@ onMounted(() => {
 <style scoped>
 .main {
   display: grid;
-  grid-template-columns: min-content 1fr;
+  grid-template-columns: auto;
   grid-template-areas:
-    'weather hourly'
-    'other-cities five-day';
-  column-gap: 1.75rem;
+    'weather'
+    'hourly'
+    'five-day'
+    'other-cities';
   row-gap: 3rem;
+  margin-bottom: 3rem;
 }
 
 @media (min-width: 768px) {
   .main {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      'weather hourly'
+      'other-cities five-day';
+    column-gap: 1.75rem;
+    row-gap: 3rem;
     column-gap: 2.75rem;
   }
 }
