@@ -39,9 +39,19 @@ A collection of modern frontend development projects completed as part of the De
    - [View Demo](https://country-page.surge.sh)
 
 7. **Country Quiz**
-   - Interactive quiz application (AI-reliant development)
+   - Interactive quiz application testing knowledge of countries and capitals
    - Technologies: Next.js 15, TypeScript, Tailwind CSS, Redux Toolkit, React Query
    - [View Demo](https://country-quiz-kappa.vercel.app/)
    - *Note: This project was developed using AI-assisted prompts to Claude 3.5 Sonnet. My contributions focused mainly on styling and UI refinements.*
 
-Each project demonstrates different aspects of frontend development, from basic HTML/CSS implementations to complex React applications with state management and API integrations.
+8. **Weather App**
+   - Real-time weather information and forecasting application
+   - Technologies: Vue.js 3, Vite, OpenWeather API
+   - [View Demo](https://weather-app-page.surge.sh)
+
+9. **AI Chatbot**
+   - Modern, responsive chatbot interface with conversation management
+   - Technologies: Vanilla JavaScript, Tailwind CSS, Vite
+   - [View Demo](https://ai-chatbot-sc.surge.sh)
+
+Each project demonstrates different aspects of frontend development, from basic HTML/CSS implementations to complex applications with state management and API integrations. The projects showcase a progression in complexity and the use of modern web development tools and frameworks.
