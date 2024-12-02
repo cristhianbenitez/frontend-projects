@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'dm-sans': ['DM Sans', 'sans-serif']
+        sans: ['DM Sans', 'sans-serif']
       },
       fontSize: {
         'heading-l': ['20px', '1.25rem'], // Bold | DM Sans
@@ -21,8 +21,8 @@ export default {
         gray: '#7E878D',
         darkLight: '#3A3E44',
         red: '#AA2E26',
-        pink: '#F9E3E2',
-        blue: '#3662E3',
+        lightRed: '#F6CCCB',
+        blue: '#2A4DD0',
         lightBlue: '#DEE9FC',
         gold: '#C18D30',
         lightYellow: '#FDF9C9',

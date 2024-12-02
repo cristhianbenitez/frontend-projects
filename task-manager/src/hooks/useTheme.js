@@ -3,28 +3,31 @@ import { useState, useEffect } from 'react';
 export function useTheme() {
   const [theme, setTheme] = useState(() => {
     // First check localStorage
-    if (localStorage.theme) {
+    if (typeof window !== 'undefined' && localStorage.theme) {
+      // Ensure classList matches stored theme
+      document.documentElement.classList.toggle('dark', localStorage.theme === 'dark');
       return localStorage.theme;
     }
 
     // If no localStorage, use system preference
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.documentElement.classList.add('dark');
       return 'dark';
-    } else {
-      document.documentElement.classList.remove('dark');
-      return 'light';
     }
+
+    document.documentElement.classList.remove('dark');
+    return 'light';
   });
 
   // Listen for system theme changes
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    if (typeof window === 'undefined') return;
 
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = (e) => {
-      // Only update if user hasn't set a preference
       if (!localStorage.theme) {
-        setTheme(e.matches ? 'dark' : 'light');
+        const newTheme = e.matches ? 'dark' : 'light';
+        setTheme(newTheme);
         document.documentElement.classList.toggle('dark', e.matches);
       }
     };
@@ -36,8 +39,8 @@ export function useTheme() {
   const handleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
-    localStorage.theme = newTheme; // Save user preference
-    document.documentElement.classList.toggle('dark');
+    localStorage.theme = newTheme;
+    document.documentElement.classList.toggle('dark', newTheme === 'dark');
   };
 
   return { theme, handleTheme };
