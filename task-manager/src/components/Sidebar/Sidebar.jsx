@@ -28,7 +28,7 @@ export function Sidebar({ theme, handleTheme }) {
     <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
       <div className="flex flex-col w-full">
         <button
-          className="p-3 ml-1 bg-darkLight rounded-full mb-9 max-w-10 max-h-10 flex items-center justify-center"
+          className="p-3 ml-1 dark:bg-darkLight bg-lightBlue rounded-full mb-9 max-w-10 max-h-10 flex items-center justify-center"
           onClick={handleToggle}
         >
           {isOpen ? (

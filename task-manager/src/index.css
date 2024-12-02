@@ -9,9 +9,12 @@ body,
 }
 
 body {
-  @apply bg-dark h-full;
+  @apply bg-white dark:bg-dark h-full dark:text-white text-black;
 }
 
+#root {
+  @apply flex;
+}
 @layer components {
   .sidebar {
     @apply flex flex-col items-center justify-between max-w-[296px] h-full px-3 pt-5 pb-3;
