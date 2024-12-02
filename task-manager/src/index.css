@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  @apply h-full;
+}
+
+body {
+  @apply bg-dark h-full;
+}
+
+@layer components {
+  .sidebar {
+    @apply flex flex-col items-center justify-between max-w-[296px] h-full px-3 pt-5 pb-3;
+  }
+
+  .sidebar.open {
+    @apply w-full;
+  }
+
+  .sidebar-boards__item {
+    @apply p-2 rounded-full flex items-center justify-center gap-3 border-2 border-transparent w-12 h-12 text-body-l font-medium cursor-pointer;
+  }
+
+  .sidebar-boards__item.open {
+    @apply w-full justify-start;
+  }
+}
