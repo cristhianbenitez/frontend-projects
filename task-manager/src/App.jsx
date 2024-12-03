@@ -6,7 +6,7 @@ import { TaskBoard } from '@components';
 const initialBoards = [
   {
     id: 1,
-    name: 'Backlog',
+    stage: 'Backlog',
     tasks: [
       { id: 1, tag: ['Concept'], description: 'Investigate Framer-Motion for animations.' },
       {
@@ -17,19 +17,45 @@ const initialBoards = [
       }
     ]
   },
-  { id: 2, name: 'In Progress', tasks: [] },
-  { id: 3, name: 'In Review', tasks: [] },
-  { id: 4, name: 'Completed', tasks: [] }
+  { id: 2, stage: 'In Progress', tasks: [] },
+  { id: 3, stage: 'In Review', tasks: [] },
+  { id: 4, stage: 'Completed', tasks: [] }
 ];
 
 function App() {
   const { theme, handleTheme } = useTheme();
   const [boards, setBoards] = useState(initialBoards);
 
+  const handleMoveTask = (taskId, targetStage) => {
+    setBoards(prevBoards => {
+      // Find the task and its source board
+      let task;
+      const newBoards = prevBoards.map(board => {
+        const taskIndex = board.tasks.findIndex(t => t.id === taskId);
+        if (taskIndex !== -1) {
+          task = board.tasks[taskIndex];
+          return {
+            ...board,
+            tasks: board.tasks.filter(t => t.id !== taskId)
+          };
+        }
+        return board;
+      });
+
+      // Add the task to the target board
+      const targetBoard = newBoards.find(board => board.stage === targetStage);
+      if (targetBoard && task) {
+        targetBoard.tasks.push(task);
+      }
+
+      return newBoards;
+    });
+  };
+
   return (
     <>
       <Sidebar theme={theme} handleTheme={handleTheme} />
-      <TaskBoard boards={boards} />
+      <TaskBoard boards={boards} onMoveTask={handleMoveTask} />
     </>
   );
 }

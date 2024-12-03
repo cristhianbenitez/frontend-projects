@@ -34,4 +34,7 @@ body {
   .sidebar-boards__item.open {
     @apply w-full justify-start;
   }
+  .dragging-over {
+    @apply bg-opacity-50 border border-dashed border-blue rounded-lg;
+  }
 }

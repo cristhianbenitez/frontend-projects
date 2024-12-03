@@ -17,11 +17,13 @@ export function SidebarBoards({ currentBoard, handleCurrentBoard, isOpen }) {
       {boards.map((board) => (
         <li
           key={board.id}
-          className={`sidebar-boards__item ${currentBoard === board.name ? 'border-blue' : ''} ${isOpen ? 'open' : ''}`}
-          onClick={() => handleCurrentBoard(board.name)}
+          className={`sidebar-boards__item ${currentBoard === board.stage ? 'border-blue' : ''} ${
+            isOpen ? 'open' : ''
+          }`}
+          onClick={() => handleCurrentBoard(board.stage)}
         >
           <img src={board.icon} alt="fix icon" className="max-w-8 max-h-8" />
-          {isOpen && <span>{board.name}</span>}
+          {isOpen && <span>{board.stage}</span>}
         </li>
       ))}
     </ul>

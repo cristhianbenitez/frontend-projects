@@ -15,8 +15,17 @@ export function TaskCard({ task }) {
         return 'bg-lightBlue text-blue';
     }
   };
+
+  const handleDragStart = (e) => {
+    e.dataTransfer.setData('taskId', task.id);
+  };
+
   return (
-    <li className="flex flex-col items-start p-3 rounded-lg bg-whiteCream dark:bg-dark cursor-pointer">
+    <li
+      draggable="true"
+      onDragStart={handleDragStart}
+      className="flex flex-col items-start p-3 rounded-lg bg-whiteCream dark:bg-dark cursor-pointer"
+    >
       {task.image && <img src={task.image} alt="task-image" className="w-full h-full rounded-lg object-cover mb-3" />}
       <p className="text-body-l font-medium tracking-[-0.035em] mb-3">{task.description}</p>
       <div className="flex gap-2">
