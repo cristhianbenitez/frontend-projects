@@ -10,14 +10,16 @@ export function TaskCard({ task }) {
       case 'Concept':
         return 'bg-lightRed text-red';
       case 'Technical':
-        return 'bg-lightYellow text-gold';
-      case 'Design':
         return 'bg-lightBlue text-blue';
+      case 'Design':
+        return 'bg-lightYellow text-gold';
+      case 'Front-end':
+        return 'bg-lightGreen text-green';
     }
   };
 
   const handleDragStart = (e) => {
-    e.dataTransfer.setData('taskId', task.id);
+    e.dataTransfer.setData('taskId', task.id.toString());
   };
 
   return (

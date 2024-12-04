@@ -9,19 +9,18 @@ import { SidebarThemeControl } from './SidebarThemeControl';
 
 Sidebar.propTypes = {
   theme: PropTypes.string,
-  handleTheme: PropTypes.func
+  handleTheme: PropTypes.func,
+  currentBoard: PropTypes.string,
+  onBoardChange: PropTypes.func,
+  boards: PropTypes.object,
+  onAddBoard: PropTypes.func
 };
 
-export function Sidebar({ theme, handleTheme }) {
+export function Sidebar({ theme, handleTheme, currentBoard, onBoardChange, boards, onAddBoard }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentBoard, setCurrentBoard] = useState('Frontend Board');
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
-  };
-
-  const handleCurrentBoard = (board) => {
-    setCurrentBoard(board);
   };
 
   return (
@@ -61,7 +60,13 @@ export function Sidebar({ theme, handleTheme }) {
           )}
         </button>
 
-        <SidebarBoards isOpen={isOpen} currentBoard={currentBoard} handleCurrentBoard={handleCurrentBoard} />
+        <SidebarBoards
+          isOpen={isOpen}
+          currentBoard={currentBoard}
+          handleCurrentBoard={onBoardChange}
+          boards={boards}
+          onAddBoard={onAddBoard}
+        />
       </div>
       <SidebarThemeControl theme={theme} handleTheme={handleTheme} isOpen={isOpen} />
     </aside>

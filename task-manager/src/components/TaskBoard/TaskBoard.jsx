@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import { TaskCard } from './TaskCard';
 
 TaskBoard.propTypes = {
-  boards: PropTypes.arrayOf(PropTypes.object),
+  board: PropTypes.object,
   onMoveTask: PropTypes.func
 };
 
-export function TaskBoard({ boards, onMoveTask }) {
-  const displayColorByBoard = (boardName) => {
-    switch (boardName) {
+const STAGES = ['Backlog', 'In Progress', 'In Review', 'Completed'];
+
+export function TaskBoard({ board, onMoveTask }) {
+  const displayColorByBoard = (stageName) => {
+    switch (stageName) {
       case 'Backlog':
         return 'bg-[#70A3F3]';
       case 'In Progress':
@@ -35,40 +37,40 @@ export function TaskBoard({ boards, onMoveTask }) {
 
   const handleDrop = (e, targetStage) => {
     e.preventDefault();
-    const taskId = parseInt(e.dataTransfer.getData('taskId'));
+    const taskId = e.dataTransfer.getData('taskId');
     onMoveTask(taskId, targetStage);
   };
 
+  const amountOfTasks = (stage) => {
+    return board.tasks.filter((task) => task.stage === stage).length;
+  };
+
   return (
-    <main
-      id="task-board"
-      className="my-3 mr-3 px-3 py-4 w-full flex items-start gap-3 dark:bg-darkLight bg-lightBlue rounded-xl"
-    >
-      {boards.map((board) => (
-        <div key={board.id} className="flex flex-col w-full gap-5 h-full">
-          <div className="flex gap-2 items-center">
-            <span className={`w-2 h-2 rounded-full ${displayColorByBoard(board.stage)}`}></span>
-            <h3 className="text-body-l font-medium">{board.stage}</h3>
+    <main className="my-3 mr-3 px-3 py-4 w-full flex items-start gap-3 dark:bg-darkLight bg-lightBlue rounded-xl">
+      {STAGES.map((stage) => (
+        <div key={stage} className="flex flex-col w-full gap-5 h-full">
+          <div className="flex items-center text-body-l font-medium">
+            <span className={`w-2 h-2 rounded-full ${displayColorByBoard(stage)} mr-2`}></span>
+            <h3>
+              {stage}&nbsp;({amountOfTasks(stage)})
+            </h3>
           </div>
           <ul
             className="flex flex-col gap-5 h-full"
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={(e) => {
-              handleDrop(e, board.stage);
+              handleDrop(e, stage);
               e.currentTarget.classList.remove('dragging-over');
             }}
           >
+            {/* Seach for each task stage and filter to render them*/}
             {board.tasks.length ? (
-              board.tasks.map((task) => <TaskCard key={task.id} task={task} />)
+              board.tasks.filter((task) => task.stage === stage).map((task) => <TaskCard key={task.id} task={task} />)
             ) : (
-              <span
-                className={`text-body-l font-medium text-gray pt-2 pl-2 ${boards.length === 1 ? 'min-h-[100px]' : ''}`}
-              >
-                No Task
-              </span>
+              <span className="text-body-l font-medium text-gray pt-2 pl-2">No Task</span>
             )}
-            {board.stage === 'Backlog' && (
+            {stage === 'Backlog' && (
               <button className="w-full px-3 py-2 flex items-center justify-between rounded-lg bg-lightBlue text-blue hover:bg-blue hover:text-lightBlue text-body-l font-medium">
                 <span>Add new task card</span>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

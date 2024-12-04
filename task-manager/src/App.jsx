@@ -1,61 +1,71 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Sidebar } from '@components';
 import { useTheme } from '@hooks/useTheme';
 import { TaskBoard } from '@components';
-
-const initialBoards = [
-  {
-    id: 1,
-    stage: 'Backlog',
-    tasks: [
-      { id: 1, tag: ['Concept'], description: 'Investigate Framer-Motion for animations.' },
-      {
-        id: 2,
-        tag: ['Technical', 'Design'],
-        description: 'Implement CRUD (Create, Read, Update, and Delete) operations',
-        image: '/task-2.png'
-      }
-    ]
-  },
-  { id: 2, stage: 'In Progress', tasks: [] },
-  { id: 3, stage: 'In Review', tasks: [] },
-  { id: 4, stage: 'Completed', tasks: [] }
-];
+import boardsData from '@data/boards.json';
 
 function App() {
   const { theme, handleTheme } = useTheme();
-  const [boards, setBoards] = useState(initialBoards);
+  const [boards, setBoards] = useState(() => {
+    // Load boards from localStorage or use default boardsData
+    const savedBoards = localStorage.getItem('boards');
+    return savedBoards ? JSON.parse(savedBoards) : boardsData;
+  });
 
-  const handleMoveTask = (taskId, targetStage) => {
-    setBoards(prevBoards => {
-      // Find the task and its source board
-      let task;
-      const newBoards = prevBoards.map(board => {
-        const taskIndex = board.tasks.findIndex(t => t.id === taskId);
-        if (taskIndex !== -1) {
-          task = board.tasks[taskIndex];
-          return {
-            ...board,
-            tasks: board.tasks.filter(t => t.id !== taskId)
-          };
-        }
-        return board;
-      });
+  const [currentBoard, setCurrentBoard] = useState(() => {
+    // Load currentBoard from localStorage or use default
+    const savedCurrentBoard = localStorage.getItem('currentBoard');
+    return savedCurrentBoard || 'frontend';
+  });
 
-      // Add the task to the target board
-      const targetBoard = newBoards.find(board => board.stage === targetStage);
-      if (targetBoard && task) {
-        targetBoard.tasks.push(task);
+  // Save boards to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('boards', JSON.stringify(boards));
+  }, [boards]);
+
+  // Save currentBoard to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('currentBoard', currentBoard);
+  }, [currentBoard]);
+
+  const handleMoveTask = (taskId, newStage) => {
+    setBoards((prevBoards) => ({
+      ...prevBoards,
+      [currentBoard]: {
+        ...prevBoards[currentBoard],
+        tasks: prevBoards[currentBoard].tasks.map((task) =>
+          task.id.toString() === taskId.toString() ? { ...task, stage: newStage } : task
+        )
       }
+    }));
+  };
 
-      return newBoards;
-    });
+  const handleAddNewBoard = ({ name, icon }) => {
+    const boardId = name.toLowerCase().replace(/ /g, '');
+    const uniqueId = `board_${Date.now()}`;
+    setBoards((prevBoards) => ({
+      ...prevBoards,
+      [boardId]: {
+        id: uniqueId,
+        name: name,
+        icon: icon,
+        tasks: []
+      }
+    }));
+    setCurrentBoard(boardId);
   };
 
   return (
     <>
-      <Sidebar theme={theme} handleTheme={handleTheme} />
-      <TaskBoard boards={boards} onMoveTask={handleMoveTask} />
+      <Sidebar
+        theme={theme}
+        handleTheme={handleTheme}
+        currentBoard={currentBoard}
+        onBoardChange={setCurrentBoard}
+        onAddBoard={handleAddNewBoard}
+        boards={boards}
+      />
+      <TaskBoard board={boards[currentBoard]} onMoveTask={handleMoveTask} />
     </>
   );
 }
