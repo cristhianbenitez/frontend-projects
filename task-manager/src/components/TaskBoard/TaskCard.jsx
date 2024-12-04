@@ -1,38 +1,26 @@
 import PropTypes from 'prop-types';
 
-TaskCard.propTypes = {
-  task: PropTypes.object
+const TAG_COLORS = {
+  Concept: 'bg-lightRed text-red',
+  Technical: 'bg-lightBlue text-blue',
+  Design: 'bg-lightYellow text-gold',
+  'Front-end': 'bg-lightGreen text-green'
 };
 
 export function TaskCard({ task }) {
-  const tagColor = (tag) => {
-    switch (tag) {
-      case 'Concept':
-        return 'bg-lightRed text-red';
-      case 'Technical':
-        return 'bg-lightBlue text-blue';
-      case 'Design':
-        return 'bg-lightYellow text-gold';
-      case 'Front-end':
-        return 'bg-lightGreen text-green';
-    }
-  };
-
-  const handleDragStart = (e) => {
-    e.dataTransfer.setData('taskId', task.id.toString());
-  };
-
   return (
     <li
       draggable="true"
-      onDragStart={handleDragStart}
+      onDragStart={(e) => e.dataTransfer.setData('taskId', task.id.toString())}
       className="flex flex-col items-start p-3 rounded-lg bg-whiteCream dark:bg-dark cursor-pointer"
     >
       {task.image && <img src={task.image} alt="task-image" className="w-full h-full rounded-lg object-cover mb-3" />}
+
       <p className="text-body-l font-medium tracking-[-0.035em] mb-3">{task.description}</p>
+
       <div className="flex gap-2">
         {task.tag.map((tag) => (
-          <span key={tag} className={`text-body-m  px-1 py-0.5 rounded-md ${tagColor(tag)}`}>
+          <span key={tag} className={`text-caption font-medium px-1 py-0.5 rounded ${TAG_COLORS[tag]}`}>
             {tag}
           </span>
         ))}
@@ -40,3 +28,12 @@ export function TaskCard({ task }) {
     </li>
   );
 }
+
+TaskCard.propTypes = {
+  task: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    tag: PropTypes.arrayOf(PropTypes.string).isRequired,
+    image: PropTypes.string
+  }).isRequired
+};

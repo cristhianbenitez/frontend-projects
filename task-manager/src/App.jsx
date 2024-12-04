@@ -7,23 +7,19 @@ import boardsData from '@data/boards.json';
 function App() {
   const { theme, handleTheme } = useTheme();
   const [boards, setBoards] = useState(() => {
-    // Load boards from localStorage or use default boardsData
     const savedBoards = localStorage.getItem('boards');
     return savedBoards ? JSON.parse(savedBoards) : boardsData;
   });
 
   const [currentBoard, setCurrentBoard] = useState(() => {
-    // Load currentBoard from localStorage or use default
-    const savedCurrentBoard = localStorage.getItem('currentBoard');
-    return savedCurrentBoard || 'frontend';
+    const savedBoard = localStorage.getItem('currentBoard');
+    return savedBoard || 'frontend';
   });
 
-  // Save boards to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem('boards', JSON.stringify(boards));
   }, [boards]);
 
-  // Save currentBoard to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('currentBoard', currentBoard);
   }, [currentBoard]);
