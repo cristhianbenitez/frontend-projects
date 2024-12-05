@@ -17,7 +17,7 @@ Sidebar.propTypes = {
 };
 
 export function Sidebar({ theme, handleTheme, currentBoard, onBoardChange, boards, onAddBoard }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);

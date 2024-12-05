@@ -13,7 +13,7 @@ function App() {
 
   const [currentBoard, setCurrentBoard] = useState(() => {
     const savedBoard = localStorage.getItem('currentBoard');
-    return savedBoard || 'frontend';
+    return savedBoard || 'defaultBoard';
   });
 
   useEffect(() => {

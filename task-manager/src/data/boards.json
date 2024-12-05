@@ -1,94 +1,13 @@
 {
-  "simpleCard": {
+  "defaultBoard": {
     "id": "board_1689324001",
-    "name": "Simple Card Board",
-    "icon": "/board-icons/artist.svg",
-    "tasks": [
-      {
-        "id": 1,
-        "tag": ["Technical"],
-        "description": "Add new card feature",
-        "stage": "Backlog"
-      },
-      {
-        "id": 2,
-        "tag": ["Technical"],
-        "description": "Implement card deletion",
-        "stage": "In Progress"
-      }
-    ]
-  },
-  "frontend": {
-    "id": "board_1689324002",
-    "name": "Frontend Board",
+    "name": "Default Board",
     "icon": "/board-icons/dev.svg",
     "tasks": [
       {
-        "id": 3,
-        "tag": ["Technical"],
-        "description": "Set up React Router",
-        "stage": "Backlog"
-      },
-      {
-        "id": 4,
-        "tag": ["Technical"],
-        "description": "Optimize bundle size",
-        "stage": "In Review"
-      },
-      {
-        "id": 8,
-        "tag": ["Technical"],
-        "description": "Implement CRUD operations",
-        "stage": "Backlog"
-      },
-      {
-        "id": 9,
-        "tag": ["Technical"],
-        "description": "Implement the ability for users to edit tasks",
-        "stage": "Backlog"
-      },
-      {
-        "id": 10,
-        "tag": ["Technical"],
-        "description": "Use the web effect state hook to update the number of pending tasks",
-        "stage": "Backlog"
-      },
-      {
-        "id": 11,
-        "tag": ["Technical"],
-        "description": "Implement the ability for users to move tasks using the mouse or keyboard",
-        "stage": "Backlog"
-      },
-      {
-        "id": 12,
-        "tag": ["Technical"],
-        "description": "Create a basic App component structure and styling",
-        "stage": "Backlog"
-      }
-    ]
-  },
-  "design": {
-    "id": "board_1689324003",
-    "name": "Design Board",
-    "icon": "/board-icons/rocket.svg",
-    "tasks": [
-      {
-        "id": 5,
-        "tag": ["Design"],
-        "description": "Design color system",
-        "stage": "Backlog"
-      }
-    ]
-  },
-  "learning": {
-    "id": "board_1689324004",
-    "name": "Learning Board",
-    "icon": "/board-icons/alarm.svg",
-    "tasks": [
-      {
-        "id": 7,
+        "id": 1,
         "tag": ["Concept"],
-        "description": "Learn TypeScript basics",
+        "description": "Default task",
         "stage": "Backlog"
       }
     ]
