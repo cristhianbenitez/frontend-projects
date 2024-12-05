@@ -20,15 +20,17 @@ export default {
         whiteCream: '#FEF7EE',
         gray: '#7E878D',
         darkLight: '#3A3E44',
-        red: '#AA2E26',
+        red: '#DD524C',
         lightRed: '#F6CCCB',
-        blue: '#2A4DD0',
+        blue: '#3662E3',
+        blue2: '#70A3F3',
         lightBlue: '#DEE9FC',
         gold: '#C18D30',
+        yellow: '#F3CE49',
         lightYellow: '#FDF9C9',
         green: '#4CA154',
-        mint: '#E2FBE8',
-        light2: '#F0F6FE'
+        lightGreen: '#E2FBE8',
+        violet: '#B787F5'
       }
     }
   },

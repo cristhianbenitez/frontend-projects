@@ -21,11 +21,15 @@ export function NewBoardPopup({ onClose, handleAddNewBoard, availableIcons }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center" onClick={handleClickOutside}>
-      <div className="bg-dark p-8 pt-6 rounded-lg max-w-[520px] w-full">
+    <div className="fixed inset-0 bg-black/80 dark:bg-black/90 flex items-center justify-center backdrop-blur-sm" onClick={handleClickOutside}>
+      <div className="bg-white dark:bg-dark p-8 pt-6 rounded-lg max-w-[520px] w-full shadow-lg dark:shadow-none">
         <div className="flex items-center justify-between mb-8">
-          <h3 className="text-heading-l font-bold">New Board</h3>
-          <button type="button" onClick={onClose} className="text-body-l hover:text-blue">
+          <h3 className="text-heading-l font-bold text-black dark:text-white">New Board</h3>
+          <button
+            type="button"
+            onClick={onClose}
+            className="text-gray hover:text-blue"
+          >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -41,7 +45,7 @@ export function NewBoardPopup({ onClose, handleAddNewBoard, availableIcons }) {
               type="text"
               name="boardName"
               placeholder="e.g: Default Board"
-              className="block w-full mb-3 p-2 rounded text-white bg-transparent border-2 border-darkLight focus:border-blue outline-none"
+              className="block w-full mb-3 p-2 rounded text-black dark:text-white bg-transparent border-2 border-lightBlue dark:border-darkLight focus:border-blue outline-none"
               value={newBoardName}
               onChange={(e) => setNewBoardName(e.target.value)}
               required
@@ -56,7 +60,7 @@ export function NewBoardPopup({ onClose, handleAddNewBoard, availableIcons }) {
               {availableIcons.map((icon) => (
                 <div
                   key={icon}
-                  className={`w-10 h-10 rounded-full border-2 hover:border-blue cursor-pointer flex items-center justify-center ${isIconSelected(
+                  className={`w-10 h-10 rounded-full border-2 hover:border-blue cursor-pointer flex items-center justify-center bg-white dark:bg-darkLight ${isIconSelected(
                     icon
                   )}`}
                   onClick={() => setNewBoardIcon(icon)}
@@ -69,7 +73,7 @@ export function NewBoardPopup({ onClose, handleAddNewBoard, availableIcons }) {
           <div className="flex gap-2">
             <button
               type="submit"
-              className="px-4 py-2 flex items-center gap-4 text-white rounded-full border border-blue bg-blue text-body-l hover:border-white hover:bg-white hover:text-black"
+              className="px-4 py-2 flex items-center gap-4 text-white rounded-full border border-blue bg-blue text-body-l hover:border-white hover:bg-white hover:text-black dark:hover:bg-dark dark:hover:text-white"
             >
               Create Board
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +88,7 @@ export function NewBoardPopup({ onClose, handleAddNewBoard, availableIcons }) {
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 border border-gray rounded-full text-body-l hover:border-blue hover:text-blue"
+              className="px-4 py-2 border border-gray rounded-full text-body-l text-gray hover:border-blue hover:text-blue"
             >
               Cancel
             </button>

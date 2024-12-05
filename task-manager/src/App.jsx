@@ -36,6 +36,26 @@ function App() {
     }));
   };
 
+  const handleUpdateTask = (updatedTaskOrBoard) => {
+    setBoards((prevBoards) => {
+      if (updatedTaskOrBoard.stage) {
+        return {
+          ...prevBoards,
+          [currentBoard]: {
+            ...prevBoards[currentBoard],
+            tasks: prevBoards[currentBoard].tasks.map((task) =>
+              task.id === updatedTaskOrBoard.id ? updatedTaskOrBoard : task
+            )
+          }
+        };
+      }
+      return {
+        ...prevBoards,
+        [currentBoard]: updatedTaskOrBoard
+      };
+    });
+  };
+
   const handleAddNewBoard = ({ name, icon }) => {
     const boardId = name.toLowerCase().replace(/ /g, '');
     const uniqueId = `board_${Date.now()}`;
@@ -61,7 +81,7 @@ function App() {
         onAddBoard={handleAddNewBoard}
         boards={boards}
       />
-      <TaskBoard board={boards[currentBoard]} onMoveTask={handleMoveTask} />
+      <TaskBoard board={boards[currentBoard]} onMoveTask={handleMoveTask} onUpdateTask={handleUpdateTask} />
     </>
   );
 }

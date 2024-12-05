@@ -7,14 +7,17 @@ const TAG_COLORS = {
   'Front-end': 'bg-lightGreen text-green'
 };
 
-export function TaskCard({ task }) {
+export function TaskCard({ task, onClick }) {
   return (
     <li
       draggable="true"
+      onClick={onClick}
       onDragStart={(e) => e.dataTransfer.setData('taskId', task.id.toString())}
       className="flex flex-col items-start p-3 rounded-lg bg-whiteCream dark:bg-dark cursor-pointer"
     >
-      {task.image && <img src={task.image} alt="task-image" className="w-full h-full rounded-lg object-cover mb-3" />}
+      {task.image && (
+        <img src={task.image} alt="task-image" className="w-full h-full max-h-20 rounded-lg object-cover mb-3" />
+      )}
 
       <p className="text-body-l font-medium tracking-[-0.035em] mb-3">{task.description}</p>
 
@@ -35,5 +38,6 @@ TaskCard.propTypes = {
     description: PropTypes.string.isRequired,
     tag: PropTypes.arrayOf(PropTypes.string).isRequired,
     image: PropTypes.string
-  }).isRequired
+  }).isRequired,
+  onClick: PropTypes.func.isRequired
 };
